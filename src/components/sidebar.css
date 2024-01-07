@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+
+.full_container {
+  border-radius: 24px;
+  margin: 0 5px;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  background-color: greenyellow;
+}
+.sidebar {
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+  width: 45px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  background-color: white;
+}
+.first_container {
+  width: 25%;
+  height: 100vh;
+  background-color: bisque;
+}
+.secound_container {
+  width: 50%;
+  height: 100vh;
+  background-color: rgb(195, 128, 255);
+}
+.third_container {
+  width: 25%;
+  height: 100vh;
+
+  background-color: coral;
+}
+.logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 15px 10px;
+  padding: 0;
+}
+
+.search {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin: 0px 12px;
+  padding: 0;
+}
+
+.home {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin: 13px 10px;
+  padding: 0;
+}
+.logout {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin: 10px 10px;
+  padding: 0;
+}
+
+.wrapper {
+  border-radius: 5px;
+}
+
+.wrapper:hover {
+  background-color: #3e2edf;
+}
