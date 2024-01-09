@@ -1,0 +1,70 @@
+.subContainer {
+  width: 80%;
+  margin: 15% 10%;
+  height: max-content;
+  border-radius: 24px;
+  padding: 10% 1px;
+
+  background-color: #fafafa;
+  color: black;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.789);
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+}
+
+.thirdcontainer_column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 5% 15%;
+  font-family: poppins;
+  justify-content: center;
+  align-items: baseline;
+}
+.update_btn {
+  display: flex;
+  width: 65%;
+  margin: 5% 17.5%;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-family: poppins;
+  padding: 14px 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #4935ff;
+  color: beige;
+}
+
+a {
+  font-size: 12px;
+  text-decoration: none;
+  color: #4935ff;
+  font-weight: 600;
+}
+.flex2 {
+  display: flex;
+  flex-direction: row;
+}
+.lastbox {
+  width: 80%;
+  margin: 10% 10%;
+  height: max-content;
+  padding: 1% 5%;
+
+  background-color: #fafafa;
+  color: black;
+  border-left: 2px solid blue;
+}
+.lastbox :nth-child(2) {
+  font-weight: 700;
+  font-size: 14px;
+}

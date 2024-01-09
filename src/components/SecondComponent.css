@@ -1,11 +1,11 @@
 /* secound container */
 
 .secound_wrapper {
-  width: 90%;
+  width: 85%;
   height: 95vh;
   margin-top: 5%;
-  margin: 5% 5%;
-  background-color: rgb(175, 255, 193);
+  margin: 5% 7.5%;
+  background-color: rgb(255, 217, 168);
   display: flex;
   flex-direction: column;
 }
@@ -86,7 +86,7 @@ li {
   font-weight: 600;
 }
 .question {
-  margin-top: 5%;
+  margin-top: 0%;
   font-weight: 600;
 }
 .dropdown-arrow {
@@ -100,13 +100,49 @@ li {
 
 .flex {
   display: flex;
+  font-size: 14px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.lastcontainer_ul {
+.lastcontainer_list {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5% 5% 0 0%;
+
+  flex-direction: row;
   font-size: 15px;
 }
 span {
   margin-left: 10px;
+}
+.pie_container {
+  position: relative;
+  margin-left: 30px;
+  width: 70px;
+  height: 70px;
+}
+.piecharts {
+  display: flex;
+  flex-direction: row;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.greyline {
+  background-color: transparent;
+  margin-top: 10%;
+  opacity: 0.2;
+}
+.fontsmall {
+  font-weight: 700;
+  font-size: 12px;
+}
+.s1 {
+  font-size: 12px;
 }

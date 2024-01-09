@@ -1,20 +1,116 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Chart from "chart.js/auto";
+
 import "./SecondComponent.css";
 
 const SecondComponent = () => {
+  const percentages = [78, 99, 30];
+  const names = ["Average", "Top", "Me"];
   useEffect(() => {
-    const canvas = document.getElementById("myChart");
+    const pieChartData = [
+      { data: [78, 22], label: "Hi1" },
+      { data: [60, 40], label: "Hi2" },
+      { data: [90, 10], label: "Hi3" },
+    ];
 
-    const ctx = canvas.getContext("2d");
+    const barCanvas = document.getElementById("myChart");
+    let myBarChart = null;
+    let myDonutCharts = [];
 
-    const gradient = ctx.createLinearGradient(0, 0, 0, 250);
-    gradient.addColorStop(0, "rgb(133, 175, 255)"); // Sky Blue
-    gradient.addColorStop(0.5, "rgb(73, 53, 255)"); // Light Blue
-    gradient.addColorStop(1, "rgb(0, 0, 50)"); // Darker Blue
+    const destroyCharts = () => {
+      if (myBarChart) {
+        myBarChart.destroy();
+      }
+      myDonutCharts.forEach((chart) => {
+        chart.destroy();
+      });
+      myDonutCharts = [];
+    };
 
-    let myChart = new Chart(ctx, {
+    pieChartData.forEach((data, index) => {
+      const canvas = document.getElementById(`myDonutChart${index}`);
+      const ctx = canvas.getContext("2d");
+
+      const myDonutChart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: [data.label, ""],
+          datasets: [
+            {
+              label: data.label,
+              data: data.data,
+              backgroundColor: ["#24d6aa", "#d3f7ee"],
+              borderWidth: 0,
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          cutout: "80%",
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: false,
+            rendering: {
+              onRender: (chart) => {
+                const ctx = chart.ctx;
+                const width = chart.width;
+                const height = chart.height;
+
+                ctx.font = "14px Arial";
+                ctx.fillStyle = "black";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+
+                const data = chart.data.datasets[0].data;
+                const labels = chart.data.labels;
+
+                let total = 0;
+                data.forEach((value) => {
+                  total += value;
+                });
+
+                const centerX = width / 2;
+                const centerY = height / 2;
+                let currentAngle = -0.5 * Math.PI;
+
+                for (let i = 0; i < data.length; i++) {
+                  const angle = (Math.PI * 2 * data[i]) / total;
+                  const radius = Math.min(width, height) / 2;
+
+                  const x =
+                    centerX + Math.cos(currentAngle + angle / 2) * radius;
+                  const y =
+                    centerY + Math.sin(currentAngle + angle / 2) * radius;
+
+                  ctx.fillText(`${labels[i]}: ${data[i]}%`, x, y);
+
+                  currentAngle += angle;
+                }
+              },
+            },
+          },
+        },
+      });
+
+      myDonutCharts.push(myDonutChart);
+
+      return () => {
+        if (myDonutChart) {
+          myDonutChart.destroy();
+        }
+      };
+    });
+
+    const ctxBar = barCanvas.getContext("2d");
+    const gradient = ctxBar.createLinearGradient(0, 0, 0, 250);
+    gradient.addColorStop(0, "rgb(133, 175, 255)");
+    gradient.addColorStop(0.5, "rgb(73, 53, 255)");
+    gradient.addColorStop(1, "rgb(0, 0, 50)");
+
+    myBarChart = new Chart(ctxBar, {
       type: "bar",
       data: {
         labels: [
@@ -55,28 +151,28 @@ const SecondComponent = () => {
             grid: {
               display: false,
             },
-            min: 0, // Set minimum value of y-axis
-            max: 300, // Set maximum value of y-axis
-            stepSize: 3, // Set step size
+            min: 0,
+            max: 300,
+            stepSize: 3,
           },
         },
       },
     });
 
     return () => {
-      if (myChart) {
-        myChart.destroy();
+      destroyCharts();
+      if (myBarChart) {
+        myBarChart.destroy();
       }
     };
   }, []);
-
   return (
-    <div class="secound_container">
-      <div class="secound_wrapper">
-        <div class="income">Retirement Income</div>
-        <div class="starting">Starting Year 2056</div>
+    <div className="secound_container">
+      <div className="secound_wrapper">
+        <div className="income">Retirement Income</div>
+        <div className="starting">Starting Year 2056</div>
 
-        <div class="ul_div">
+        <div className="ul_div">
           <ul>
             <li>
               <div className="price">$300,000</div>
@@ -136,14 +232,70 @@ const SecondComponent = () => {
           <div className="grey">
             These numbers represent current goal achievement
           </div>
-          <ul className="lastcontainer_ul">
-            <li className="flex">
-              <div>Age:</div>
-              <span> Under 30</span>
+          <div className="lastcontainer_list">
+            <div>
+              <div className="flex">
+                <div className="fontsmall">Age:</div>
+                <span className="s1"> Under30</span>
 
-              <div class="dropdown-arrow"></div>
-            </li>
-          </ul>
+                <div className="dropdown-arrow"></div>
+              </div>
+              <hr className="greyline" />
+              <div className="flex">
+                <div className="fontsmall">Salary:</div>
+                <span className="s1"> K20 K 30</span>
+
+                <div className="dropdown-arrow"></div>
+              </div>
+              <hr className="greyline" />
+
+              <div className="flex">
+                <div className="fontsmall">Gender:</div>
+                <span className="s1"> Male</span>
+
+                <div className="dropdown-arrow"></div>
+              </div>
+              <hr className="greyline" />
+            </div>
+
+            <div className="piecharts">
+              {[...Array(3)].map((_, index) => (
+                <div className="column">
+                  <div className="pie_container" key={index}>
+                    <canvas
+                      id={`myDonutChart${index}`}
+                      width="80"
+                      height="80"
+                    ></canvas>
+                    <div
+                      id={`pieText${index}`}
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        color: "black",
+                      }}
+                    >
+                      {percentages[index]}%
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      marginTop: "10px",
+                      fontWeight: 600,
+                      marginLeft: "30%",
+                    }}
+                  >
+                    {names[index]}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
