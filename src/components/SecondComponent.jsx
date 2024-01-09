@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 
 import "./SecondComponent.css";
 
 const SecondComponent = () => {
+  const [isMediumScreen, setIsMediumScreen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
   const percentages = [78, 99, 30];
   const names = ["Average", "Top", "Me"];
+
   useEffect(() => {
     const pieChartData = [
       { data: [78, 22], label: "Hi1" },
@@ -158,147 +162,320 @@ const SecondComponent = () => {
         },
       },
     });
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth <= 481);
+
+      setIsMediumScreen(window.innerWidth >= 481 && window.innerWidth <= 767);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
 
     return () => {
       destroyCharts();
       if (myBarChart) {
         myBarChart.destroy();
       }
+      window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
   return (
-    <div className="secound_container">
-      <div className="secound_wrapper">
-        <div className="income">Retirement Income</div>
-        <div className="starting">Starting Year 2056</div>
+    <>
+      {isSmallScreen ? (
+        <div className="secound_container">
+          <div className="secound_wrapper">
+            <div className="income">Retirement Income</div>
+            <div className="starting">Starting Year 2056</div>
 
-        <div className="ul_div">
-          <ul>
-            <li>
-              <div className="price">$300,000</div>
-              <div className="grey">My Goal</div>
-              <hr />
-            </li>
-            <li>
-              <div className="price">59%</div>
-              <div className="grey">Goal Achieved</div>
-              <hr />
-            </li>
-            <li>
-              <div className="price">$300</div>
-              <div className="grey">Est. Monthly Income</div>
-              <hr />
-            </li>
-          </ul>
-        </div>
-        <div className="linegraph">
-          <div className="linegraph_title">Contributions Overtime</div>
-          <ul style={{ margin: 0 }}>
-            <li className="graph_list ">
-              <div style={{ backgroundColor: "blue" }} className="color"></div>
-              <div className="grey">Employee:</div>
-              <div className="list_price">K 73,500</div>
-            </li>
-            <li className="graph_list ">
-              <div className="color"></div>
-              <div className="grey">Employee:</div>
-              <div className="list_price">K 52,500</div>
-            </li>
-            <li className="graph_list ">
-              <div
-                style={{ backgroundColor: "skyblue" }}
-                className="color"
-              ></div>
-              <div className="grey">Total Interest:</div>
-              <div className="list_price">K 73,500</div>
-            </li>
-          </ul>
-          <div className="mychart_line">
-            <canvas
-              id="myChart"
-              style={{
-                boxSizing: "border-box",
-                display: "block",
-                height: "230px",
-                width: "700px",
-              }}
-              width="750"
-              height="287"
-            ></canvas>
-          </div>
-        </div>
-        <div className="lastcontainer">
-          <div className="question">How do I compare to my peers?</div>
-          <div className="grey">
-            These numbers represent current goal achievement
-          </div>
-          <div className="lastcontainer_list">
-            <div>
-              <div className="flex">
-                <div className="fontsmall">Age:</div>
-                <span className="s1"> Under30</span>
-
-                <div className="dropdown-arrow"></div>
+            <div className="ul_div">
+              <div className="goal">
+                <div className="goal_price">$300,000</div>
+                <div className="goal_grey">My Goal</div>
+                <hr
+                  style={{
+                    border: "1px solid #c8dbff",
+                    width: "90%",
+                    marginTop: "5% ",
+                    marginLeft: "2%",
+                  }}
+                />
               </div>
-              <hr className="greyline" />
-              <div className="flex">
-                <div className="fontsmall">Salary:</div>
-                <span className="s1"> K20 K 30</span>
-
-                <div className="dropdown-arrow"></div>
-              </div>
-              <hr className="greyline" />
-
-              <div className="flex">
-                <div className="fontsmall">Gender:</div>
-                <span className="s1"> Male</span>
-
-                <div className="dropdown-arrow"></div>
-              </div>
-              <hr className="greyline" />
-            </div>
-
-            <div className="piecharts">
-              {[...Array(3)].map((_, index) => (
-                <div className="column">
-                  <div className="pie_container" key={index}>
-                    <canvas
-                      id={`myDonutChart${index}`}
-                      width="80"
-                      height="80"
-                    ></canvas>
-                    <div
-                      id={`pieText${index}`}
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        fontSize: "16px",
-                        fontWeight: "bold",
-                        color: "black",
-                      }}
-                    >
-                      {percentages[index]}%
-                    </div>
-                  </div>
-                  <div
+              <ul>
+                <li>
+                  <div className="price">59%</div>
+                  <div className="grey">Goal Achieved</div>
+                  <hr
                     style={{
-                      fontSize: "12px",
-                      marginTop: "10px",
-                      fontWeight: 600,
-                      marginLeft: "30%",
+                      border: "1px solid #c8dbff",
+                      width: "90%",
+                      marginTop: "5% ",
+                      marginLeft: "2%",
                     }}
-                  >
-                    {names[index]}
+                  />{" "}
+                </li>
+                <li>
+                  <div className="price">$300</div>
+                  <div className="grey">Est. Monthly Income</div>
+                  <hr
+                    style={{
+                      border: "1px solid #c8dbff",
+                      width: "90%",
+                      marginTop: "5% ",
+                      marginLeft: "2%",
+                    }}
+                  />{" "}
+                </li>
+              </ul>
+            </div>
+            <div className="linegraph">
+              <div className="linegraph_title">Contributions Overtime</div>
+              <ul>
+                <li className="graph_list ">
+                  <div
+                    style={{ backgroundColor: "blue" }}
+                    className="color"
+                  ></div>
+                  <div className="grey">Employee:</div>
+                  <div className="list_price">K 73,500</div>
+                </li>
+                <li className="graph_list ">
+                  <div className="color"></div>
+                  <div className="grey">Employee:</div>
+                  <div className="list_price">K 52,500</div>
+                </li>
+                <li className="graph_list ">
+                  <div
+                    style={{ backgroundColor: "skyblue" }}
+                    className="color"
+                  ></div>
+                  <div className="grey">Total Interest:</div>
+                  <div className="list_price">K 73,500</div>
+                </li>
+              </ul>
+              <div className="mychart_line">
+                <canvas
+                  id="myChart"
+                  style={{
+                    boxSizing: "border-box",
+                    display: "block",
+                    height: "230px",
+                    width: "700px",
+                  }}
+                  width="750"
+                  height="287"
+                ></canvas>
+              </div>
+            </div>
+            <div className="lastcontainer">
+              <div className="question">How do I compare to my peers?</div>
+              <div className="grey">
+                These numbers represent current goal achievement
+              </div>
+              <div className="lastcontainer_list">
+                <div>
+                  <div className="flex">
+                    <div className="fontsmall">Age:</div>
+                    <span className="s1"> Under30</span>
+
+                    <div className="dropdown-arrow"></div>
                   </div>
+                  <hr className="greyline" />
+                  <div className="flex">
+                    <div className="fontsmall">Salary:</div>
+                    <span className="s1"> K20 K 30</span>
+
+                    <div className="dropdown-arrow"></div>
+                  </div>
+                  <hr className="greyline" />
+
+                  <div className="flex">
+                    <div className="fontsmall">Gender:</div>
+                    <span className="s1"> Male</span>
+
+                    <div className="dropdown-arrow"></div>
+                  </div>
+                  <hr className="greyline" />
                 </div>
-              ))}
+
+                <div className="piecharts">
+                  {[...Array(3)].map((_, index) => (
+                    <div className="column">
+                      <div className="pie_container" key={index}>
+                        <canvas
+                          id={`myDonutChart${index}`}
+                          width="80"
+                          height="80"
+                        ></canvas>
+                        <div
+                          id={`pieText${index}`}
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            fontSize: "16px",
+                            fontWeight: "bold",
+                            color: "black",
+                          }}
+                        >
+                          {percentages[index]}%
+                        </div>
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "12px",
+                          marginTop: "10px",
+                          fontWeight: 600,
+                          marginLeft: "30%",
+                        }}
+                      >
+                        {names[index]}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <div className="secound_container">
+          <div className="secound_wrapper">
+            <div className="income">Retirement Income</div>
+            <div className="starting">Starting Year 2056</div>
+
+            <div className="ul_div">
+              <ul>
+                <li>
+                  <div className="price">$300,000</div>
+                  <div className="grey">My Goal</div>
+                  <hr />
+                </li>
+                <li>
+                  <div className="price">59%</div>
+                  <div className="grey">Goal Achieved</div>
+                  <hr />
+                </li>
+                <li>
+                  <div className="price">$300</div>
+                  <div className="grey">Est. Monthly Income</div>
+                  <hr />
+                </li>
+              </ul>
+            </div>
+            <div className="linegraph">
+              <div className="linegraph_title">Contributions Overtime</div>
+              <ul style={{ margin: 0 }}>
+                <li className="graph_list ">
+                  <div
+                    style={{ backgroundColor: "blue" }}
+                    className="color"
+                  ></div>
+                  <div className="grey">Employee:</div>
+                  <div className="list_price">K 73,500</div>
+                </li>
+                <li className="graph_list ">
+                  <div className="color"></div>
+                  <div className="grey">Employee:</div>
+                  <div className="list_price">K 52,500</div>
+                </li>
+                <li className="graph_list ">
+                  <div
+                    style={{ backgroundColor: "skyblue" }}
+                    className="color"
+                  ></div>
+                  <div className="grey">Total Interest:</div>
+                  <div className="list_price">K 73,500</div>
+                </li>
+              </ul>
+              <div className="mychart_line">
+                <canvas
+                  id="myChart"
+                  style={{
+                    boxSizing: "border-box",
+                    display: "block",
+                    height: "230px",
+                    width: "700px",
+                  }}
+                  width="750"
+                  height="287"
+                ></canvas>
+              </div>
+            </div>
+            <div className="lastcontainer">
+              <div className="question">How do I compare to my peers?</div>
+              <div className="grey">
+                These numbers represent current goal achievement
+              </div>
+              <div className="lastcontainer_list">
+                <div>
+                  <div className="flex">
+                    <div className="fontsmall">Age:</div>
+                    <span className="s1"> Under30</span>
+
+                    <div className="dropdown-arrow"></div>
+                  </div>
+                  <hr className="greyline" />
+                  <div className="flex">
+                    <div className="fontsmall">Salary:</div>
+                    <span className="s1"> K20 K 30</span>
+
+                    <div className="dropdown-arrow"></div>
+                  </div>
+                  <hr className="greyline" />
+
+                  <div className="flex">
+                    <div className="fontsmall">Gender:</div>
+                    <span className="s1"> Male</span>
+
+                    <div className="dropdown-arrow"></div>
+                  </div>
+                  <hr className="greyline" />
+                </div>
+
+                <div className="piecharts">
+                  {[...Array(3)].map((_, index) => (
+                    <div className="column">
+                      <div className="pie_container" key={index}>
+                        <canvas
+                          id={`myDonutChart${index}`}
+                          width="80"
+                          height="80"
+                        ></canvas>
+                        <div
+                          id={`pieText${index}`}
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            fontSize: "16px",
+                            fontWeight: "bold",
+                            color: "black",
+                          }}
+                        >
+                          {percentages[index]}%
+                        </div>
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "12px",
+                          marginTop: "10px",
+                          fontWeight: 600,
+                          marginLeft: "30%",
+                        }}
+                      >
+                        {names[index]}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

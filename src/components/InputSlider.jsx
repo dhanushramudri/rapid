@@ -29,11 +29,19 @@ export default function InputSlider() {
   };
 
   const handleInputChange = (event) => {
-    // Append the percentage symbol to the value before setting it in state
+    // Get the numerical value entered by the user
     const inputValue = event.target.value;
-    setValue(inputValue === "" ? 0 : inputValue + "%");
-  };
 
+    // Convert the numerical value to a number
+    const numericValue = Number(inputValue);
+    console.log(numericValue);
+
+    // Check if the input is a valid number
+    if (!isNaN(numericValue)) {
+      // Append the percentage symbol to the value before setting it in state
+      setValue(numericValue + "%");
+    }
+  };
   const handleBlur = () => {
     if (value < 0) {
       setValue(0);
