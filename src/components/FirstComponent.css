@@ -10,7 +10,7 @@
 .profile {
   width: 100%;
   height: max-content;
-  background-color: grey;
+  /* background-color: grey; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -216,7 +216,7 @@
     width: 100%;
     padding: 30px 0;
 
-    background-color: green;
+    /* background-color: green; */
   }
   .notif img {
     float: right;
@@ -225,7 +225,7 @@
   .profile {
     width: 100%;
     height: max-content;
-    background-color: grey;
+    /* background-color: grey; */
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
@@ -265,7 +265,7 @@
   .profile_2 {
     width: 90%;
     height: max-content;
-    background-color: rgb(255, 175, 175);
+    /* background-color: rgb(255, 175, 175); */
     display: flex;
     flex-direction: column;
     font-family: "Poppins", sans-serif;
@@ -309,8 +309,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10%;
 
-    margin-top: 10px;
+    /* margin-top: 10px; */
     width: max-content;
     font-size: 15px;
     font-family: poppins;
@@ -409,16 +410,17 @@
     top: 0;
 
     background-color: white;
-    opacity: 0.2;
+    opacity: 0.5;
   }
   .notif img {
     float: right;
     padding: 0 20px;
+    opacity: 1;
   }
   .profile {
     width: 100%;
     height: max-content;
-    background-color: grey;
+    /* background-color: grey; */
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
@@ -458,7 +460,7 @@
   .profile_2 {
     width: 90%;
     height: max-content;
-    background-color: rgb(255, 175, 175);
+    /* background-color: rgb(255, 175, 175); */
     display: flex;
     flex-direction: column;
     font-family: "Poppins", sans-serif;
@@ -600,7 +602,7 @@
   .profile_4 {
     width: 90%;
     height: max-content;
-    background-color: rgb(255, 175, 175);
+    /* background-color: rgb(255, 175, 175); */
     display: flex;
     flex-direction: column;
     font-family: "Poppins", sans-serif;

@@ -31,7 +31,7 @@ const FirstComponent = () => {
         <div class="first_container">
           <div class="padding_div">
             <div className="notif">
-              <img src={Notification} alt="" />
+              <img src={Notification} alt="notification" />
             </div>
             <div class="profile">
               <img class="profile_img" src={profile} alt="" />
