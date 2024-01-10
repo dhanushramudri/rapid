@@ -272,7 +272,15 @@ const SecondComponent = () => {
                 These numbers represent current goal achievement
               </div>
               <div className="lastcontainer_list">
-                <div>
+                <div
+                  style={{
+                    padding: "2px 10px",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    flexDirection: "column",
+                  }}
+                >
                   <div className="flex">
                     <div className="fontsmall">Age:</div>
                     <span className="s1"> Under30</span>

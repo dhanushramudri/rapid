@@ -113,12 +113,18 @@
   }
   .secound_container {
     width: 100%;
-    height: 100vh;
+    height: max-content;
     background-color: lightcoral;
   }
   .third_container {
     width: 100%;
     height: 100vh;
+
+    background-color: darkcyan;
+  }
+  .third_container {
+    width: 100%;
+    height: max-content;
 
     background-color: darkcyan;
   }

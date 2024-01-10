@@ -167,7 +167,7 @@ span {
   }
   .secound_wrapper {
     width: 85%;
-    height: 95vh;
+    height: max-content;
     margin-top: 5%;
     margin: 5% 7.5%;
     background-color: rgb(255, 217, 168);
@@ -246,7 +246,7 @@ span {
     background-color: #7566ff;
   }
   .mychart_line {
-    margin: 1% 5% 0px 5%;
+    margin: 15% 5% 0px 5%;
     width: 90%;
     height: 180px;
   }
@@ -259,6 +259,9 @@ span {
   }
   .question {
     margin-top: 0%;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    font-family: sans-serif;
     font-weight: 600;
   }
   .dropdown-arrow {
@@ -276,15 +279,16 @@ span {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding: 0px 50px;
   }
   .lastcontainer_list {
     width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 5% 5% 0 0%;
+    margin: 5% 10% 0 10%;
 
-    flex-direction: row;
+    flex-direction: column;
     font-size: 15px;
   }
   span {
@@ -298,7 +302,9 @@ span {
   }
   .piecharts {
     display: flex;
+    /* flex-wrap: wrap; */
     flex-direction: row;
+    z-index: 0;
   }
   .column {
     display: flex;
@@ -307,6 +313,7 @@ span {
     align-items: center;
   }
   .greyline {
+    width: 100%;
     background-color: transparent;
     margin-top: 10%;
     opacity: 0.2;
@@ -316,6 +323,7 @@ span {
     font-size: 12px;
   }
   .s1 {
-    font-size: 12px;
+    margin-left: 20%;
+    font-size: 13px;
   }
 }

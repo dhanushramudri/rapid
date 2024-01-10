@@ -1,3 +1,13 @@
+@media (max-with: 480px) {
+  .flex_new {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 98%;
+    margin: 5% 1% 0 1%;
+  }
+}
+
 .subContainer {
   width: 80%;
   margin: 15% 10%;
@@ -67,4 +77,20 @@ a {
 .lastbox :nth-child(2) {
   font-weight: 700;
   font-size: 14px;
+}
+.flex_new {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  margin: 5% 5% 0 5%;
+}
+@media (max-with: 480px) {
+  .flex_new {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 98%;
+    margin: 5% 1% 0 1%;
+  }
 }
